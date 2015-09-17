@@ -1,11 +1,14 @@
 <ion-view view-title="Dashboard">
   <ion-content class="padding">
         <button class="button button-block button-dark" ng-click="identifyUser()">
-  Identify a user
-</button>
+         Identify a user
+          </button>
 
 <button class="button button-block button-positive" ng-if="identified" ng-click="pushRegister()">
   Register for Push
 </button>
+
+    <button class="button" ng-click="setBadge(5)">Set Badge</button>
+
   </ion-content>
 </ion-view>

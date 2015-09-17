@@ -1,9 +1,10 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, $rootScope, $ionicUser, $ionicPush, $log) {
+.controller('DashCtrl', function($scope, $rootScope, $ionicUser, $ionicPush, $log, $ionicPlatform, $cordovaBadge) {
   // Identifies a user with the Ionic User service
 
   // Handles incoming device tokens
+
   $rootScope.$on('$cordovaPush:tokenReceived', function(event, data) {
     alert("Successfully registered token " + data.token);
     console.log( 'token: '+ data.token);
@@ -47,11 +48,29 @@ angular.module('starter.controllers', [])
       onNotification: function(notification) {
         // Handle new push notifications here
         // $log.info(notification);
+         $scope.counter= notification.msgcnt;
+         $scope.setBadge($scope.counter);
+          console.log('badge: '+ $scope.counter);
+        alert(notification.message);
+
         return true;
       }
     });
   };
 
+  $ionicPlatform.ready(function() {
+         //$cordovaBadge.promptForPermission();
+
+       
+        $scope.setBadge = function(value) {
+            $cordovaBadge.hasPermission().then(function(result) {
+                $cordovaBadge.set(value);
+            }, function(error) {
+                alert(error);
+            });
+        }
+  
+ });
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {

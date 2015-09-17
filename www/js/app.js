@@ -83,3 +83,7 @@ angular.module('starter', ['ionic','ionic.service.core','ionic.service.push','ng
   $urlRouterProvider.otherwise('/tab/dash');
 
 });
+
+
+
+
